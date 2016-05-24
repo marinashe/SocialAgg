@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    % for page in pages:
+        <h3>{{page['name']}}</h3>
+        <ul>
+            % for post in page['posts']:
+                <li><b>{{post['time']}}</b> {{post['message']}}</li>
+            % end
+
+        </ul>
+     % end
+</body>
+</html>
