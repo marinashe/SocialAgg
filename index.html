@@ -3,18 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Social Aggregator</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h3>Social Aggregator</h3>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="default"><a  href="/">
+                    <b>All pages</b></a>
+                </li>
+                <li class="default"><a  href="/latest/">
+                    <b>Latest posts</b></a>
+                </li>
+                <li class="default"><a  href="/{{today}}/">
+                    <b>Posts for yesterday</b></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </head>
 <body>
-    % for page in pages:
-        <h3>{{page['name']}}</h3>
-        <p>About: {{page['about']}}</p>
-        <p>Fans:  {{page['fans']}}</p>
-        <ul>
-            % for post in page['best']:
-                <li>{{post['time']}} <b>({{post['like']}} Likes)</b> {{post['message']}}</li>
-            % end
+    <div class="container-fluid">
+        % for page in pages:
+            <div class="'row">
+                <h3><b>{{page['name']}}</b></h3>
+                <p><b>About:</b> {{page['about']}}</p>
+                <p><b>Fans:</b>  {{page['fans']}}</p>
+                <ul class="list-group">
+                    % for post in page['best']:
+                        <li class="list-group-item">{{post['time']}} <b>({{post['like']}} Likes)</b> {{post['message']}}</li>
+                    % end
 
-        </ul>
-     % end
+                </ul>
+            </div>
+         % end
+
+    </div>
 </body>
 </html>

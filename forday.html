@@ -25,6 +25,15 @@
 </head>
 <body>
     <div class="container">
+<!--        <div class="row">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <a class="btn btn-default" type="button" href="/">Go!</a>
+              </span>
+              <input type="text" class="form-control" placeholder="Search for...">
+            </div>
+        </div>
+-->
         % for page in pages:
             <div class="row">
                 <h3>{{page['name']}}</h3>
@@ -32,6 +41,7 @@
                     % for post in page['posts']:
                         <li class="list-group-item"><b>{{post['time']}}</b> {{post['message']}}</li>
                     % end
+
                 </ul>
             </div>
          % end
