@@ -15,7 +15,6 @@ def get_update():
 
     with open("TOKEN.txt") as f:
         TOKEN = f.read().strip()
-
     graph = facebook.GraphAPI(access_token=TOKEN, version='2.5')
     for page in pages.find():
         allposts = graph.get_object("{}/posts".format(page['id']),
@@ -26,6 +25,8 @@ def get_update():
         for post in new_rez:
 
             likes = post['likes']['summary']['total_count']
+
+            shares = post['shares']['count'] if 'shares' in post else 0
             result = posts.update_one(
                 {'id': post['id']},
                 {'$set': {
@@ -33,6 +34,7 @@ def get_update():
                           'id': post['id'],
                           'time': dateutil.parser.parse(post['created_time'], ignoretz=True),
                           'message': post['message'],
+                          'shares': shares,
                           'likes': likes
                 }}, upsert=True)
             key = 'new' if result.upserted_id else "updated"

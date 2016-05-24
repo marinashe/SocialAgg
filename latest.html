@@ -2,34 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
     <title>{{title}}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="/static/css/aggregator.css" type="text/css" rel="stylesheet"/>
+
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <h3>Social Aggregator</h3>
+                <button type="button" class="navbar-toggle collapsed nav_button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h3 class="site_name">Social Aggregator</h3>
             </div>
-            <ul class="nav navbar-nav">
-                <li class="default"><a  href="/">
-                    <b>All pages</b></a>
-                </li>
-                <li class="default"><a  href="/latest/">
-                    <b>Latest posts</b></a>
-                </li>
-                <li class="default"><a  href="/{{today}}/">
-                    <b>Posts for yesterday</b></a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav nav_ul">
+                    <li role="presentation" class="nav_but default"><a  href="/">
+                        <b>All pages</b></a>
+                    </li>
+                    <li role="presentation" class="nav_but default active"><a  href="/latest/">
+                        <b>Latest posts</b></a>
+                    </li>
+                    <li role="presentation" class="nav_but default"><a  href="/{{today}}/">
+                        <b>Posts for day</b></a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </head>
 <body>
-    <div class="container">
+    <div class="col-xs-12">
         <ul class="list-group">
             % for post in posts:
-                <li class="list-group-item"><a href="https://facebook.com/{{post['id']}}/"><b>{{post['page']['name']}} {{post['time']}}</b></a> {{post['message']}} ({{post['likes']}} likes)</li>
+                <li class="list-group-item">
+                <a href="https://facebook.com/{{post['page']['id']}}/">{{post['page']['name']}} {{post['time']}}</a>
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
+                                <p>{{post['message']}}</p>
+                </li>
             % end
         </ul>
     </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 </html>

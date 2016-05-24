@@ -64,8 +64,8 @@ def show_pages():
     pages = db.get_collection('pages')
 
     for page in pages.find():
-        rez = {'name': page['name'], 'about': page['about'], 'fans': page['fans'], 'id': page['id'], 'best': bests(page['id'])}
-        yield rez
+        page['best'] = bests(page['id'])
+        yield page
 
 
 def bests(page_id):
@@ -78,7 +78,8 @@ def bests(page_id):
     allposts = [x for x in posts.find({'page_id': page_id})]
 
     for post in sorted(allposts, key=lambda x: x['likes'], reverse=True)[:3]:
-        rez.append({'time': post['time'], 'like': post['likes'], 'message': post['message']})
+        rez.append(post)
+
     return rez
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-from bottle import route, run, template
+from bottle import route, run, template, static_file
 import calendar
 import datetime
 import aggregator
@@ -25,6 +25,11 @@ def index(year, month, day):
                     title='Posts {}/{}/{}'.format(year, month, day),
                     today=(datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y/%m/%d')
                     )
+
+
+@route('/static/:path#.+#', name='static')
+def static(path):
+    return static_file(path, root='static')
 
 if __name__ == "__main__":
     run(debug=True, reloader=True)
