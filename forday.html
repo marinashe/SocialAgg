@@ -34,17 +34,15 @@
             </div>
         </div>
 -->
-        % for page in pages:
-            <div class="row">
-                <h3>{{page['name']}}</h3>
-                <ul class="list-group">
-                    % for post in page['posts']:
-                        <li class="list-group-item"><b>{{post['time']}}</b> {{post['message']}}</li>
-                    % end
 
-                </ul>
-            </div>
-         % end
+    <div class="container">
+        <ul class="list-group">
+            % for post in posts:
+                <li class="list-group-item"><a href="https://facebook.com/{{post['id']}}/"><b>{{post['page']['name']}} {{post['time']}}</b></a> {{post['message']}} ({{post['likes']}} likes)</li>
+            % end
+        </ul>
+    </div>
+
     </div>
 </body>
 </html>

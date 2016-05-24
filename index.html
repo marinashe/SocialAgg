@@ -33,7 +33,9 @@
                 <p><b>Fans:</b>  {{page['fans']}}</p>
                 <ul class="list-group">
                     % for post in page['best']:
-                        <li class="list-group-item">{{post['time']}} <b>({{post['like']}} Likes)</b> {{post['message']}}</li>
+                        <li class="list-group-item">
+                            <a href="https://facebook.com/{{page['id']}}/">{{post['time']}}</a>
+                            <b>({{post['like']}} Likes)</b> {{post['message']}}</li>
                     % end
 
                 </ul>
