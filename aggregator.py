@@ -82,16 +82,15 @@ def bests(page_id):
 
     return rez
 
-def all_days(cur_day='1000/1/1'):
+
+def get_days_range():
     client = pymongo.MongoClient()
     db = client.get_database('socialagg')
     posts = db.get_collection('posts')
-    alldays = []
-    for day in set([post['time'].strftime('%Y/%m/%d') for post in posts.find()]):
-        if cur_day != day:
-            alldays.append(day)
+    days = set([post['time'].strftime('%Y/%m/%d') for post in posts.find()])
 
-    return sorted(alldays, reverse=True)
+    return min(days), max(days)
+
 
 
 if __name__ == '__main__':

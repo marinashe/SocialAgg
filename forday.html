@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="/static/css/aggregator.css" type="text/css" rel="stylesheet"/>
 
 
@@ -40,15 +41,14 @@
     </nav>
 </head>
 <body>
-    <div class="col-xs-12 col-sm-5 col-md-3 select_date">
-        <select class="selectpicker" onChange="window.location.href=this.value">
-            <option value="/{{day}}/">{{day}}</option>
-            % for d in days:
-                <option value="/{{d}}/">{{d}}</option>
-            % end
-        </select>
+    <div class="col-xs-12 col-sm-5 col-md-2 select_date">
+        <div class="input-group">
+            <input class="form-control" type="text" readonly id="datepicker" name="datepicker" onChange="window.location.href='/' + this.value + '/'">
+            <label for="datepicker" class="input-group-addon btn">
+                <span class="fa fa-calendar"></span>
+            </label>
+        </div>
     </div>
-
     <div class="col-xs-12">
         <ul class="list-group">
             % for post in posts:
@@ -68,5 +68,20 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    $(function() {
+        $("#datepicker").datepicker({
+                    dateFormat: "yy/mm/dd",
+                    //defaultDate: "{{day}}",
+                    minDate: "{{min_day}}",
+                    maxDate: "{{max_day}}",
+                }
+        );
+        $("#datepicker").datepicker('setDate', "{{day}}")
+    });
+</script>
 
 </html>
