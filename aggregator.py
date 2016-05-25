@@ -23,6 +23,11 @@ def show_posts(date=False):
     pages = db.get_collection('pages')
     pages_dict = {p['id']: p for p in pages.find()}
     posts = db.get_collection('posts')
+    # TODO: instead of using find(), use:
+    #       filter = {}
+    #       if date:
+    #           filter['time'] = {'$gte': datetime.datetime(...), '$lt': datetime.datetime(...)}
+    #       find(filter)
     if date:
         date = dateutil.parser.parse(date, ignoretz=True).date()
         for post in posts.find().sort('time', pymongo.DESCENDING):
