@@ -11,11 +11,11 @@ def show_pages():
     db = client.get_database('socialagg')
 
     pages = db.get_collection('pages')
-    posts = db.get_collection('posts')
 
     for page in pages.find():
-        print(page)
-    print('Ok')
+        for x in page:
+            print(x, page[x], sep=' : ')
+        print('=======================================')
 
 if __name__ == '__main__':
     show_pages()
