@@ -5,10 +5,6 @@ import pymongo
 import sys
 import dateutil.parser
 
-from pprint import pprint
-
-
-
 
 def bests():
     client = pymongo.MongoClient()
@@ -18,10 +14,10 @@ def bests():
 
     for page in pages.find():
 
-        allposts = [x for x in posts.find({'id': page['id']})][0]['posts']
+        allposts = [x for x in posts.find({'page_id': page['id']})]
         print(page['name'], 'The best posts', sep='\n')
-        for post in sorted(allposts, key=lambda likes: likes[3], reverse=True)[:3]:
-            print(post[0],'{} likes'.format(post[3]), post[1], sep=' ')
+        for post in sorted(allposts, key=lambda likes: likes['likes'], reverse=True)[:3]:
+            print(post['time'],'{} likes'.format(post['likes']), post['message'], sep=' ')
 
 
     print('Ok')
