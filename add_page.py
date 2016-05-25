@@ -15,7 +15,7 @@ def add_page_to_db(name):
 
     graph = facebook.GraphAPI(access_token=TOKEN, version='2.5')
     inf = graph.get_object(name,
-                         fields="about,name,fan_count,picture")
+                         fields="about,name,fan_count,picture.width(180).height(180)")
 
     pages.insert({'id': inf['id'],
                 'name': inf['name'],
