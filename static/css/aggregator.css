@@ -19,3 +19,33 @@
 
     padding-left: 20px;
 }
+
+.date_pic{
+
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.label_pic {
+
+    margin-top: 5px;
+}
+
+.select_date {
+
+    margin-bottom: 10px;
+}
+
+.list_name {
+
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 767px) {
+    .list_mobile{
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+    }

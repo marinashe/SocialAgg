@@ -25,7 +25,7 @@ def show_posts(date=False):
     posts = db.get_collection('posts')
     if date:
         date = dateutil.parser.parse(date, ignoretz=True).date()
-        for post in posts.find().sort('time', pymongo.DESCENDING).limit(50):
+        for post in posts.find().sort('time', pymongo.DESCENDING):
             if post['time'].date() == date:
                 post['page'] = pages_dict[post['page_id']]
                 yield post
@@ -82,5 +82,17 @@ def bests(page_id):
 
     return rez
 
+def all_days(cur_day='1000/1/1'):
+    client = pymongo.MongoClient()
+    db = client.get_database('socialagg')
+    posts = db.get_collection('posts')
+    alldays = []
+    for day in set([post['time'].strftime('%Y/%m/%d') for post in posts.find()]):
+        if cur_day != day:
+            alldays.append(day)
+
+    return sorted(alldays, reverse=True)
+
+
 if __name__ == '__main__':
-    pass
+    print(all_days())

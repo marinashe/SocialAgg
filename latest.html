@@ -29,7 +29,7 @@
                     <li role="presentation" class="nav_but default active"><a  href="/latest/">
                         <b>Latest posts</b></a>
                     </li>
-                    <li role="presentation" class="nav_but default"><a  href="/{{today}}/">
+                    <li role="presentation" class="nav_but default"><a  href="/{{day}}/">
                         <b>Posts for day</b></a>
                     </li>
                 </ul>
@@ -41,12 +41,12 @@
     <div class="col-xs-12">
         <ul class="list-group">
             % for post in posts:
-                <li class="list-group-item">
-                <a href="https://facebook.com/{{post['page']['id']}}/">{{post['page']['name']}} {{post['time']}}</a>
+                <a href="https://facebook.com/{{post['id']}}/" class="list-group-item">
+                                <b>{{post['page']['name']}} {{post['time']}}</b>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
                                 <p>{{post['message']}}</p>
-                </li>
+                </a>
             % end
         </ul>
     </div>

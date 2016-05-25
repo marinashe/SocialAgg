@@ -7,23 +7,25 @@ import aggregator
 @route('/')
 def index():
     return template('index.html', pages=aggregator.show_pages(),
-                    today=(datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y/%m/%d'))
+                    day=aggregator.all_days()[0])
 
 
 @route('/latest/')
 def index():
     return template('latest.html', posts=aggregator.show_posts(),
                     title='Latest posts',
-                    today=(datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y/%m/%d')
+                    day=aggregator.all_days()[0]
                     )
 
 
 @route('/<year>/<month>/<day>/')
 def index(year, month, day):
+    cur_day = year + '/' + month + '/' + day
     return template('forday.html',
-                    posts=aggregator.show_posts(year + '/' + month + '/' + day),
+                    posts=aggregator.show_posts(cur_day),
                     title='Posts {}/{}/{}'.format(year, month, day),
-                    today=(datetime.datetime.today() - datetime.timedelta(days=1)).strftime('%Y/%m/%d')
+                    days=aggregator.all_days(cur_day),
+                    day=cur_day
                     )
 
 

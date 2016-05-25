@@ -31,7 +31,7 @@
                     <li role="presentation" class="nav_but default"><a  href="/latest/" >
                         <b>Latest posts</b></a>
                     </li>
-                    <li role="presentation" class="nav_but default"><a  href="/{{today}}/" >
+                    <li role="presentation" class="nav_but default"><a  href="/{{day}}/" >
                         <b>Posts for day</b></a>
                     </li>
                 </ul>
@@ -44,24 +44,26 @@
         % for page in pages:
             <div class="'row">
                 <div class="row col-xs-12">
-                    <div class="col-sm-2">
+                    <div class="col-sm-4 col-md-2">
                         <img src="{{page['photo']}}">
                     </div>
-                    <div class="col-sm-10">
-                        <h3><b>{{page['name']}}</b></h3>
+                    <div class="col-sm-8 col-md-10">
+                        <h3><b><a href="https://facebook.com/{{page['id']}}/">{{page['name']}}</a></b></h3>
                         <p><b>About:</b> {{page['about']}}</p>
                         <p><b>Fans:</b>  {{page['fans']}}</p>
                     </div>
                 </div>
-                <div class="container col-xs-12">
+                <div class="container list_mobile col-xs-12">
                     <ul class="list-group">
+                        <li class="list-group-item list-group-item-info">
+                            <p class="list_name"><b>The best posts</b></p>
+                        </li>
                         % for post in page['best']:
-                            <li class="list-group-item">
-                                <a href="https://facebook.com/{{page['id']}}/">{{post['time']}}</a>
+                            <a href="https://facebook.com/{{post['id']}}/" class="list-group-item"><b>{{post['time']}}</b>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
                                 <p>{{post['message']}}</p>
-                            </li>
+                            </a>
                         % end
 
                     </ul>

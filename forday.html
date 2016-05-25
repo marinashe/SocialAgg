@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="/static/css/aggregator.css" type="text/css" rel="stylesheet"/>
@@ -30,7 +31,7 @@
                     <li role="presentation" class="nav_but default"><a  href="/latest/">
                         <b>Latest posts</b></a>
                     </li>
-                    <li role="presentation" class="nav_but default active"><a  href="/{{today}}/">
+                    <li role="presentation" class="nav_but default active"><a  href="/{{day}}/">
                         <b>Posts for day</b></a>
                     </li>
                 </ul>
@@ -39,26 +40,24 @@
     </nav>
 </head>
 <body>
-
-<!--        <div class="row">
-            <div class="input-group">
-              <span class="input-group-btn">
-                <a class="btn btn-default" type="button" href="/">Go!</a>
-              </span>
-              <input type="text" class="form-control" placeholder="Search for...">
-            </div>
-        </div>
--->
+    <div class="col-xs-12 col-sm-5 col-md-3 select_date">
+        <select class="selectpicker" onChange="window.location.href=this.value">
+            <option value="/{{day}}/">{{day}}</option>
+            % for d in days:
+                <option value="/{{d}}/">{{d}}</option>
+            % end
+        </select>
+    </div>
 
     <div class="col-xs-12">
         <ul class="list-group">
             % for post in posts:
-                <li class="list-group-item">
-                    <a href="https://facebook.com/{{post['page']['id']}}/">{{post['page']['name']}} {{post['time']}}</a>
-                                    &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
-                                    &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
-                                    <p>{{post['message']}}</p>
-                </li>
+                <a href="https://facebook.com/{{post['id']}}/" class="list-group-item">
+                                <b>{{post['page']['name']}} {{post['time']}}</b>
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
+                                <p>{{post['message']}}</p>
+                </a>
             % end
         </ul>
     </div>
@@ -68,5 +67,6 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 
 </html>
