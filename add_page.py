@@ -9,6 +9,7 @@ def add_page_to_db(name):
     client = pymongo.MongoClient()
     db = client.get_database('socialagg')
     pages = db.get_collection('pages')
+    pages.create_index('id', unique=True)
 
     with open("TOKEN.txt") as f:
         TOKEN = f.read().strip()

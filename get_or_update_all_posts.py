@@ -12,7 +12,10 @@ def get_update():
     db = client.get_database('socialagg')
     pages = db.get_collection('pages')
     posts = db.get_collection('posts')
-
+    pages.create_index('id', unique=True)
+    posts.create_index('id', unique=True)
+    posts.create_index('time', unique=False)
+    posts.create_index('page_id', unique=False)
     with open("TOKEN.txt") as f:
         TOKEN = f.read().strip()
     graph = facebook.GraphAPI(access_token=TOKEN, version='2.5')
