@@ -48,7 +48,7 @@
                         <img src="{{page['photo']}}">
                     </div>
                     <div class="col-sm-8 col-md-10">
-                        <h3><b><a href="https://facebook.com/{{page['id']}}/">{{page['name']}}</a></b></h3>
+                        <h3><b><a href="https://facebook.com/{{page['id']}}/" target="_blank">{{page['name']}}</a></b></h3>
                         <p><b>About:</b> {{page['about']}}</p>
                         <p><b>Fans:</b>  {{page['fans']}}</p>
                     </div>
@@ -59,7 +59,7 @@
                             <p class="list_name"><b>The best posts</b></p>
                         </li>
                         % for post in page['best']:
-                            <a href="https://facebook.com/{{post['id']}}/" class="list-group-item"><b>{{post['time']}}</b>
+                            <a href="https://facebook.com/{{post['id']}}/" class="list-group-item" target="_blank"><b>{{post['time']}}</b>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
                                 <p>{{post['message']}}</p>
