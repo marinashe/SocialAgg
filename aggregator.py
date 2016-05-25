@@ -23,12 +23,15 @@ def show_posts(date=False):
     pages = db.get_collection('pages')
     pages_dict = {p['id']: p for p in pages.find()}
     posts = db.get_collection('posts')
+
+    filter = {}
+
     if date:
         date = dateutil.parser.parse(date, ignoretz=True).date()
-        for post in posts.find().sort('time', pymongo.DESCENDING):
-            if post['time'].date() == date:
-                post['page'] = pages_dict[post['page_id']]
-                yield post
+        filter['time'] = {'$gte': date, '$lt': date}
+        for post in posts.find({'time': filter['time']}).sort('time', pymongo.DESCENDING):
+            post['page'] = pages_dict[post['page_id']]
+            yield post
     else:
         for post in posts.find().sort('time', pymongo.DESCENDING).limit(50):
             post['page'] = pages_dict[post['page_id']]
@@ -75,9 +78,8 @@ def bests(page_id):
     posts = db.get_collection('posts')
 
     rez = []
-    allposts = [x for x in posts.find({'page_id': page_id})]
 
-    for post in sorted(allposts, key=lambda x: x['likes'], reverse=True)[:3]:
+    for post in posts.find({'page_id': page_id}).sort('likes', pymongo.DESCENDING)[:3]:
         rez.append(post)
 
     return rez
@@ -91,7 +93,3 @@ def get_days_range():
 
     return min(days), max(days)
 
-
-
-if __name__ == '__main__':
-    print(all_days())
