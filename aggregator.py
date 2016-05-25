@@ -75,8 +75,12 @@ def bests(page_id):
     posts = db.get_collection('posts')
 
     rez = []
+    # TODO: remove next line
     allposts = [x for x in posts.find({'page_id': page_id})]
 
+    # TODO: use find({...}).sort('field', pymongo.DESCENDING)
+    #       see: https://api.mongodb.com/python/current/api/pymongo/cursor.html#pymongo.cursor.Cursor.sort
+    # TODO: are you creating indexes somewhere?
     for post in sorted(allposts, key=lambda x: x['likes'], reverse=True)[:3]:
         rez.append(post)
 
