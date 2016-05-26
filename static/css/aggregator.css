@@ -44,8 +44,8 @@
 
 .photo-post {
 
-    width: 400px;
-    height: 300px;
+    width: 200px;
+    height: 150px;
 }
 
 @media (max-width: 767px) {

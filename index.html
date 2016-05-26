@@ -54,22 +54,33 @@
                     </div>
                 </div>
                 <div class="container list_mobile col-xs-12">
+
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-info">
                             <p class="list_name"><b>The best posts</b></p>
                         </li>
+
                         % for post in page['best']:
-                            <a href="https://facebook.com/{{post['id']}}/" class="list-group-item" target="_blank"><b>{{post['time']}}</b>
+                        <div class="media">
+                            <a href="https://facebook.com/{{post['id']}}/" class="list-group-item" target="_blank">
+                            <div class="media-left ">
+                                <img class="photo-post" src="{{post['picture']}}">
+                            </div>
+                            <div class="media-body ">
+
+                                <b>{{post['time']}}</b>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
                                 &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
                                 <p>{{post['message']}}</p>
-                            </a>
 
 
-
+                            </div>
+                             </a>
+                        </div>
                         % end
 
                     </ul>
+
                 </div>
             </div>
          % end
@@ -79,5 +90,23 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+(function($) {
+        var $window = $(window),
+            $html = $('html');
 
+        function resize() {
+            if ($window.width() < 768) {
+
+                return $(".media-left").addClass('media-top').removeClass('media-left');
+            }
+
+            $(".media-top").addClass('media-left').removeClass('media-top');
+        }
+
+        $window
+            .resize(resize)
+            .trigger('resize');
+    })(jQuery);
+</script>
 </html>

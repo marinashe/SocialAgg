@@ -52,15 +52,26 @@
     <div class="col-xs-12">
         <ul class="list-group">
             % for post in posts:
-                <a href="https://facebook.com/{{post['id']}}/" class="list-group-item" target="_blank">
-                                <b>{{post['page']['name']}} {{post['time']}}</b>
-                                &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
-                                &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
-                                <p>{{post['message']}}</p>
-                </a>
+                <div class="media">
+                    <a href="https://facebook.com/{{post['id']}}/" class="list-group-item" target="_blank">
+                        <div class="media-left ">
+                            <img class="photo-post" src="{{post['picture']}}">
+                        </div>
+                        <div class="media-body ">
+
+                            <b>{{post['page']['name']}} {{post['time']}}</b>
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"> {{post['likes']}} Likes</i>
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"> {{post['shares']}} Shares</i>
+                            <p>{{post['message']}}</p>
+
+                        </div>
+                     </a>
+                </div>
             % end
         </ul>
     </div>
+
+
 
 
 </body>
@@ -82,6 +93,25 @@
         );
         $("#datepicker").datepicker('setDate', "{{day}}")
     });
+
+    (function($) {
+        var $window = $(window),
+            $html = $('html');
+
+        function resize() {
+            if ($window.width() < 768) {
+
+                return $(".media-left").addClass('media-top').removeClass('media-left');
+            }
+
+            $(".media-top").addClass('media-left').removeClass('media-top');
+        }
+
+        $window
+            .resize(resize)
+            .trigger('resize');
+    })(jQuery);
+
 </script>
 
 </html>
