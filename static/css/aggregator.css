@@ -48,6 +48,11 @@
     height: 150px;
 }
 
+.no-margin-top {
+
+    margin-top: 0px;
+}
+
 @media (max-width: 767px) {
     .list_mobile{
 

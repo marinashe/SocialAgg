@@ -52,10 +52,12 @@
     <div class="col-xs-12">
         <ul class="list-group">
             % for post in posts:
-                <div class="media">
+                <div class="media no-margin-top">
                     <a href="https://facebook.com/{{post['id']}}/" class="list-group-item" target="_blank">
                         <div class="media-left ">
-                            <img class="photo-post" src="{{post['picture']}}">
+                            % if post['picture'] is not None:
+                                <img class="photo-post" src="{{post['picture']}}">
+                            % end
                         </div>
                         <div class="media-body ">
 

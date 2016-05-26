@@ -30,7 +30,7 @@ def get_update():
             likes = post['likes']['summary']['total_count']
 
             shares = post['shares']['count'] if 'shares' in post else 0
-            picture = post['full_picture'] if 'full_picture' in post else False
+            picture = post['full_picture'] if 'full_picture' in post else None
             result = posts.update_one(
                 {'id': post['id']},
                 {'$set': {
