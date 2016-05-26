@@ -42,6 +42,12 @@
     margin-bottom: 0px;
 }
 
+.photo-post {
+
+    width: 400px;
+    height: 300px;
+}
+
 @media (max-width: 767px) {
     .list_mobile{
 

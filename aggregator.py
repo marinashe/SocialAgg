@@ -23,12 +23,13 @@ def show_posts(date=False):
     pages = db.get_collection('pages')
     pages_dict = {p['id']: p for p in pages.find()}
     posts = db.get_collection('posts')
-
     filter = {}
 
     if date:
-        date = dateutil.parser.parse(date, ignoretz=True).date()
-        filter['time'] = {'$gte': date, '$lt': date}
+        date_start = dateutil.parser.parse(str(date) + ' 00:00:00', ignoretz=True)
+        date_end = dateutil.parser.parse(str(date) + ' 23:59:59', ignoretz=True)
+
+        filter['time'] = {'$gte': date_start, '$lt': date_end}
         for post in posts.find({'time': filter['time']}).sort('time', pymongo.DESCENDING):
             post['page'] = pages_dict[post['page_id']]
             yield post
