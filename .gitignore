@@ -1,0 +1,12 @@
+.idea/
+TOKEN.txt
+__pycache__/
+add_foto.py
+bootstrap-3.3.6-dist.zip
+bootstrap/
+get_page_info.py
+pages.py
+pymongo
+secrets.py
+static/js/
+

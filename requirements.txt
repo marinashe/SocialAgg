@@ -1,0 +1,16 @@
+Django==1.9.6
+backports.shutil-get-terminal-size==1.0.0
+bottle==0.12.9
+decorator==4.0.9
+facebook-sdk==1.0.0
+ipython==4.2.0
+ipython-genutils==0.1.0
+pexpect==4.1.0
+pickleshare==0.7.2
+ptyprocess==0.5.1
+pymongo==3.2.2
+python-dateutil==2.5.3
+requests==2.10.0
+simplegeneric==0.8.1
+six==1.10.0
+traitlets==4.2.1
